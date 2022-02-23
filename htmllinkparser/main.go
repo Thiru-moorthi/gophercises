@@ -15,7 +15,7 @@ type Links struct {
 	Text string
 }
 
-func parse_links(n *html.Node, links []Links) ([] Links){
+func Parse_links(n *html.Node, links []Links) ([] Links){
 	if n.Type == html.ElementNode && n.Data == "a"{
 		for _, attr := range n.Attr {
 			if attr.Key == "href" {
@@ -29,7 +29,7 @@ func parse_links(n *html.Node, links []Links) ([] Links){
 	
 	}
 	for i := n.FirstChild; i != nil; i=i.NextSibling {
-		 links = parse_links(i, links)
+		 links = Parse_links(i, links)
 	}
 
 	return links
@@ -67,5 +67,5 @@ func main() {
 
 	
 
-	fmt.Println(parse_links(html_root, make([]Links, 0)))
+	fmt.Println(Parse_links(html_root, make([]Links, 0)))
 }
